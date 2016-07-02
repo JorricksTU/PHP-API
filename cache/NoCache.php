@@ -34,6 +34,12 @@ class NoCache extends Cache
 		return $this->getRetriever()->getStations();
 	}
 
+	public function getStationsv2()
+	{
+		return $this->getRetriever()->getStationsv2();
+	}
+
+
 	public function getPrijzen($fromStation, $toStation, $viaStation = null, $dateTime = null)
 	{
 		return $this->getRetriever()->getPrijzen($fromStation, $toStation, $viaStation, $dateTime);

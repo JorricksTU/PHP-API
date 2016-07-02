@@ -20,6 +20,7 @@ require_once(dirname(__FILE__).'/Utils.php');
 require_once(dirname(__FILE__).'/NSException.php');
 
 require_once(dirname(__FILE__).'/dto/Station.php');
+require_once(dirname(__FILE__).'/dto/Stationv2.php');
 require_once(dirname(__FILE__).'/dto/Product.php');
 require_once(dirname(__FILE__).'/dto/VertrekkendeTrein.php');
 require_once(dirname(__FILE__).'/dto/ReisMogelijkheid.php');
@@ -98,6 +99,41 @@ class NS
 			$long = (string)$xmlStation->long;
 			$alias = Utils::string2Boolean($xmlStation->alias);
 			$station = new Station($name, $code, $country, $lat, $long, $alias);
+			$result[] = $station;
+		}
+		return $result;
+	}
+
+
+	// NOTE! Not working with MySQL cache!
+	public function getStationsv2()
+	{
+		$xml = $this->cache->getStationsv2();
+		$xml = new SimpleXMLElement($xml);
+
+		$result = array();
+		foreach ($xml->Station as $xmlStation)
+		{
+			$code = (string)$xmlStation->Code;
+			$type = (string)$xmlStation->Type;
+			$naamkort = (string)$xmlStation->Namen->Kort;
+			$naammiddel = (string)$xmlStation->Namen->Middel;
+			$naamlang = (string)$xmlStation->Namen->Lang;
+			$land = (string)$xmlStation->Land;
+			$UICCode = (string)$xmlStation->UICCode;
+			$lat = (string)$xmlStation->Lat;
+			$long = (string)$xmlStation->Lon;
+			$synoniem = array();
+			if($xmlStation->Synoniemen->Synoniem[0] != null){
+				$synoniem[] = $xmlStation->Synoniemen->Synoniem[0];
+				if($xmlStation->Synoniemen->Synoniem[1] != null) {
+					$synoniem[] = $xmlStation->Synoniemen->Synoniem[1];
+				}
+			} else {
+				$synoniem[] = null;
+			}
+			$station = new Stationv2($code, $type, $naamkort, $naammiddel, $naamlang, $land, $UICCode,
+				$lat, $long, $synoniem);
 			$result[] = $station;
 		}
 		return $result;

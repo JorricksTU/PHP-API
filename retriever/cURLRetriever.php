@@ -43,6 +43,12 @@ class cURLRetriever extends Retriever
 		return $this->getXML(parent::URL_STATIONS);
 	}
 
+	public function getStationsv2()
+	{
+		return $this->getXML(parent::URL_STATIONSv2);
+	}
+
+
 	public function getPrijzen($fromStation, $toStation, $viaStation = null, $dateTime = null)
 	{
 		return $this->getXML(parent::URL_PRIJZEN."?from=".$fromStation->getCode()."&to=".$toStation->getCode().($viaStation !== NULL ? "&via=".$viaStation->getCode() : "").($dateTime !== NULL ? "&dateTime=".Utils::UnixTimestamp2ISO8601Date($dateTime) : ""));

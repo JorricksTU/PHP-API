@@ -29,6 +29,7 @@ abstract class Cache
 
 	// Seconds to cache a previous result
 	private $timeToCacheStations = 86400; // 60 * 60 * 24
+	private $timeToCacheStationsv2 = 86400; // 60 * 60 * 24
 	private $timeToCachePrijzen = 86400; // 60 * 60 * 24
 	private $timeToCacheActuelevertrektijden = 30;
 	private $timeToCacheTreinplanner = 60;
@@ -53,6 +54,12 @@ abstract class Cache
 	{
 		$this->timeToCacheStations = $timeToCacheStations;
 	}
+
+	public function setTimeToCacheStationsv2($timeToCacheStationsv2)
+	{
+		$this->timeToCacheStationsv2 = $timeToCacheStationsv2;
+	}
+
 	public function getTimeToCachePrijzen()
 	{
 		return $this->timeToCachePrijzen;

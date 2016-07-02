@@ -30,6 +30,7 @@ abstract class Retriever
 	private $password;
 
 	const URL_STATIONS = "http://webservices.ns.nl/ns-api-stations";
+	const URL_STATIONSv2 = "http://webservices.ns.nl/ns-api-stations-v2";
 	const URL_PRIJZEN = "http://webservices.ns.nl/ns-api-prijzen-v2";
 	const URL_ACTUELEVERTREKTIJDEN = "http://webservices.ns.nl/ns-api-avt";
 	const URL_TREINPLANNER = "http://webservices.ns.nl/ns-api-treinplanner";
@@ -52,6 +53,7 @@ abstract class Retriever
 	}
 
 	public abstract function getStations();
+	public abstract function getStationsv2();
 	public abstract function getPrijzen($fromStation, $toStation, $viaStation = null, $dateTime = null);
 	public abstract function getActueleVertrektijden($station);
 	public abstract function getTreinplanner($fromStation, $toStation, $viaStation = null, $previousAdvices = null, $nextAdvices = null, $dateTime = null, $departure = null, $hslAllowed = null, $yearCard = null);

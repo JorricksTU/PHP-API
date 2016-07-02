@@ -46,6 +46,21 @@ class FileCache extends Cache
 		}
 	}
 
+	public function getStationsv2()
+	{
+		$tmpFile = $this->initTmpDir("stations")."result.xml";
+		if (file_exists($tmpFile) && filemtime($tmpFile) + $this->getTimeToCacheStationsv2() > time())
+		{
+			return file_get_contents($tmpFile);
+		}
+		else
+		{
+			$xml = $this->getRetriever()->getStationsv2();
+			file_put_contents($tmpFile, $xml);
+			return $xml;
+		}
+	}
+
 	public function getPrijzen($fromStation, $toStation, $viaStation = null, $dateTime = null)
 	{
 		$tmpFile = $this->initTmpDir("prijzen", $fromStation, $toStation, $viaStation, $dateTime)."result.xml";
