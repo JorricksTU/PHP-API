@@ -28,10 +28,10 @@ class cURLRetriever extends Retriever
 	const SOAP_FAULTSTRING_START = "<faultstring>";
 	const SOAP_FAULTSTRING_END = "</faultstring>";
 
-	const XML_ERROR_INVALID_WEBSERVICE = 002; // 002:The requested webservice is not found
-	const XML_ERROR_INVALID_KEY = 006; // 006:No customer found for the specified username and password
-	const XML_ERROR_UNEXPECTED = 009; // 099:An unexpected exception occured
-	const XML_ERROR_LIMIT_REACHED = 013; // 013:The limit for calling this webservice has been reached
+	const XML_ERROR_INVALID_WEBSERVICE = 2; // 002:The requested webservice is not found
+	const XML_ERROR_INVALID_KEY = 6; // 006:No customer found for the specified username and password
+	const XML_ERROR_UNEXPECTED = 99; // 099:An unexpected exception occured
+	const XML_ERROR_LIMIT_REACHED = 13; // 013:The limit for calling this webservice has been reached
 
 	public function __construct($username, $password)
 	{
